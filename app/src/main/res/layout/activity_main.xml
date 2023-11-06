@@ -34,7 +34,7 @@
             android:id="@+id/costServiceInput"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:inputType="number" />
+            android:inputType="numberDecimal" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -74,7 +74,8 @@
             style="@style/Widget.TipTime.CompoundButton.RadioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/amazing_service" />
+            android:text="@string/amazing_service"
+            android:checked="true"/>
 
         <RadioButton
             android:id="@+id/option_good_18"
