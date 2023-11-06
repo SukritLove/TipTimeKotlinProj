@@ -1,7 +1,13 @@
 package com.example.tiptime
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.KeyEvent
+import android.view.View
+import android.view.inputmethod.InputMethodManager
+import android.widget.Button
+import android.widget.TextView
 import com.example.tiptime.databinding.ActivityMainBinding
 import java.text.NumberFormat
 
@@ -13,9 +19,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        
+        val byn : Button = findViewById(R.id.calculate_Btn)
+
 
         // Old way with findViewById()
         binding.calculateBtn.setOnClickListener{calculateTip()}
+        binding.costServiceInput.setOnKeyListener{view, keyCode, _ -> handleKeyEvent(view, keyCode)}
 
 
 }
@@ -45,5 +55,15 @@ class MainActivity : AppCompatActivity() {
             else -> 0.15
         }
         return tipPercentage
+    }
+
+    private fun handleKeyEvent(view: View, keyCode: Int):Boolean{
+        if(keyCode==KeyEvent.KEYCODE_ENTER){
+            val inputMethodManager =
+                getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(view.windowToken,0)
+            return true
+        }
+        return false
     }
 }
